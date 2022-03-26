@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import styles from './Home.module.css';
@@ -10,6 +11,7 @@ function Home() {
   const [cocktail, setCocktail] = useState({});
   const [cocktailSearchValue, setCocktailSearchValue] = useState('');
   const [loading, setLoading] = useState(false);
+  let navigate = useNavigate();
 
   let typingTimer;
   const doneTypingInterval = 500;
@@ -43,6 +45,7 @@ function Home() {
       : '/api/cocktail';
 
     setLoading(true);
+
     axios
       .get(url)
       .then((res) => {
@@ -51,9 +54,12 @@ function Home() {
       })
       .catch((err) => {
         setLoading(false);
-        // Something happened in setting up the request that triggered an Error
         throw new Error(`Error: ${err.message}`);
       });
+  };
+
+  const cocktailRoute = () => {
+    navigate(`/cocktail/${cocktail.id}`);
   };
 
   useEffect(() => {
@@ -77,12 +83,17 @@ function Home() {
         <Button label="Get random cocktail" onClick={handleButtonClick} />
       </div>
 
-      <Card externalClass={styles['cocktail-preview-card-home']}>
-        <div className={styles['cocktail-preview']}>
-          <h2>{cocktail.name}</h2>
-          <img src={cocktail.preview} alt={`${cocktail.name} preview`} />
-        </div>
-      </Card>
+      {Object.keys(cocktail).length > 0 && (
+        <Card
+          externalClass={styles['cocktail-preview-card-home']}
+          onClick={cocktailRoute}
+        >
+          <div className={styles['cocktail-preview']}>
+            <h2>{cocktail.name}</h2>
+            <img src={cocktail.preview} alt={`${cocktail.name} preview`} />
+          </div>
+        </Card>
+      )}
     </section>
   );
 }
