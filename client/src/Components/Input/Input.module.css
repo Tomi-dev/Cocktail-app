@@ -1,0 +1,34 @@
+.form-control {
+  position: relative;
+  display: flex;
+  width: 360px;
+  height: 50px;
+  margin-bottom: 20px;
+  color: #262626;
+}
+
+.form-control label {
+  position: absolute;
+  top: 14px;
+  left: 8px;
+  transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
+}
+
+.form-control label.label-animated {
+  top: 7px;
+  font-size: 10px;
+}
+
+.form-control input {
+  width: 100%;
+  max-height: 100%;
+  padding: 12px 8px;
+  padding-bottom: 0px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+}
+
+.form-control input:active,
+.form-control input:focus {
+  outline: none;
+}

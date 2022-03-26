@@ -1,0 +1,12 @@
+.btn-default {
+  padding: 10px 15px;
+  border: 2px solid transparent;
+  background-color: rgb(255, 255, 255);
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-default:active {
+  transform: translateY(2px);
+}

@@ -1,0 +1,45 @@
+.form-control-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.form-control-container div {
+  margin-bottom: 0;
+}
+
+.form-control-container button {
+  margin-left: auto;
+}
+
+h1 {
+  color: #fff;
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 4rem;
+  /* text-decoration: underline; */
+  text-shadow: -5px 1px 0px rgb(0 0 0 / 15%);
+}
+
+.cocktail-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.cocktail-preview h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cocktail-preview img {
+  width: 100%;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.cocktail-preview-card-home {
+  width: 400px;
+  margin: 0 auto;
+}

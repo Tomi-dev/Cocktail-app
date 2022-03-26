@@ -2,6 +2,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -11,4 +18,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  height: 100%;
+  background-color: rgb(75, 195, 215);
+  background-image: url('https://digitalthinkers.hu/assets/index_hero.png');
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  background-size: 30%;
 }
