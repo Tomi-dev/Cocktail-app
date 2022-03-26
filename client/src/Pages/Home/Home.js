@@ -9,6 +9,7 @@ import Button from '../../Components/Button/Button';
 function Home() {
   const [cocktail, setCocktail] = useState({});
   const [cocktailSearchValue, setCocktailSearchValue] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (event) => {
     setCocktailSearchValue(event.target.value);
@@ -19,10 +20,19 @@ function Home() {
   };
 
   const getRandomCocktail = () => {
-    return axios
+    if (loading) {
+      return;
+    }
+
+    setLoading(true);
+    axios
       .get('/api/cocktail')
-      .then((res) => setCocktail(res.data))
+      .then((res) => {
+        setCocktail(res.data);
+        setLoading(false);
+      })
       .catch((err) => {
+        setLoading(false);
         // Something happened in setting up the request that triggered an Error
         throw new Error(`Error: ${err.message}`);
       });
