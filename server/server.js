@@ -46,6 +46,7 @@ const modifyDrinkForDetailPage = (data) => {
 // Get Random cocktail
 app.get('/api/cocktail', async (req, res) => {
   try {
+    console.log(`Requesting a random cocktail.`);
     const response = await fetch(
       'https://www.thecocktaildb.com/api/json/v1/1/random.php'
     );
@@ -53,6 +54,7 @@ app.get('/api/cocktail', async (req, res) => {
     let data = await response.json();
     data = modifyDrinkDataForHomePage(data);
 
+    console.log(`Requesting a random cocktail ended, sending back the data.`);
     res.status(200).json(data);
   } catch (error) {
     res.status(500).send(`Something went wrong: ${error}`);
@@ -64,6 +66,7 @@ app.get('/api/cocktail/:id', async (req, res) => {
   try {
     const cocktail_id = req.params.id;
 
+    console.log(`Requesting a cocktail by the id of ${cocktail_id}`);
     const response = await fetch(
       `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktail_id}`
     );
@@ -71,6 +74,9 @@ app.get('/api/cocktail/:id', async (req, res) => {
     let data = await response.json();
     data = modifyDrinkForDetailPage(data);
 
+    console.log(
+      `Requesting a cocktail by the id of ${cocktail_id} ended, sending back the modified data.`
+    );
     res.status(200).json(data);
   } catch (error) {
     res.status(500).send(`Something went wrong: ${error}`);
@@ -82,6 +88,7 @@ app.get('/api/cocktail-by-name/:name', async (req, res) => {
   try {
     const cocktail_name = req.params.name;
 
+    console.log(`Requesting a cocktail by the name of ${cocktail_name}`);
     const response = await fetch(
       `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktail_name}`
     );
@@ -89,6 +96,9 @@ app.get('/api/cocktail-by-name/:name', async (req, res) => {
     let data = await response.json();
     data = modifyDrinkDataForHomePage(data);
 
+    console.log(
+      `Requesting a cocktail by the name of ${cocktail_name} ended, sending back the modified data.`
+    );
     res.status(200).json(data);
   } catch (error) {
     res.status(500).send(`Something went wrong: ${error}`);
