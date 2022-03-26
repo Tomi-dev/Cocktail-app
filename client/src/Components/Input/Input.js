@@ -25,12 +25,6 @@ function Input({
     }
   };
 
-  useEffect(() => {
-    if (placeholder) {
-      setIsFocused(true);
-    }
-  }, []);
-
   return (
     <div className={styles['form-control']}>
       {label && id && (
@@ -45,7 +39,6 @@ function Input({
         type={type}
         name={name}
         id={id}
-        placeholder={placeholder}
         value={value}
         onChange={onChange}
         onKeyUp={onKeyUp}

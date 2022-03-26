@@ -13,6 +13,7 @@ function Home() {
   const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
 
+  // Setting up a timer to guess if the user still typing, its an estimated time just to avoid unnecessary requests
   let typingTimer;
   const doneTypingInterval = 500;
 
@@ -20,6 +21,7 @@ function Home() {
     setCocktailSearchValue(event.target.value);
   };
 
+  // Clearing and setting the typing timer.
   const handleKeyUp = () => {
     clearTimeout(typingTimer);
     typingTimer = setTimeout(() => {
@@ -35,6 +37,10 @@ function Home() {
     getRandomCocktail();
   };
 
+  // General function to avoid code repeating and to set the url based on the user entered seach value.
+  // If we got search value.
+  // Note: we dont use the search value from the state, because we have a button click event which calls this function as well
+  // We got a basic loading too, just to avoid request spamming
   const getRandomCocktail = (searchValue) => {
     if (loading) {
       return;
@@ -58,10 +64,12 @@ function Home() {
       });
   };
 
+  // Navigation to the cocktail's details page
   const cocktailRoute = () => {
     navigate(`/cocktail/${cocktail.id}`);
   };
 
+  // Getting a random cocktail when the component gets mounted
   useEffect(() => {
     getRandomCocktail();
   }, []);

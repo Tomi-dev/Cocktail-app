@@ -1,9 +1,9 @@
 import fetch from 'node-fetch';
 import express from 'express';
-// const express = require('express');
 
 const app = express();
 
+// Helper function to get rid of all the unnecessary data
 const modifyDrinkDataForHomePage = (data) => {
   let drink = data.drinks[0];
   return {
@@ -13,6 +13,10 @@ const modifyDrinkDataForHomePage = (data) => {
   };
 };
 
+// I admit this is kind of messy
+// This function retrieves every ingreadient and the associated measure
+// The Logic behind it: Only retrieve the value if its key contains the Ingreadient word and if its value is not null
+// it does the same for the measurements by replacing the Ingredient word in the object key
 const modifyDrinkForDetailPage = (data) => {
   let drink = data.drinks[0];
   let modifiedDrink = modifyDrinkDataForHomePage(data);
@@ -39,6 +43,7 @@ const modifyDrinkForDetailPage = (data) => {
   return modifiedDrink;
 };
 
+// Get Random cocktail
 app.get('/api/cocktail', async (req, res) => {
   try {
     const response = await fetch(
@@ -54,6 +59,7 @@ app.get('/api/cocktail', async (req, res) => {
   }
 });
 
+// Get cocktail by id
 app.get('/api/cocktail/:id', async (req, res) => {
   try {
     const cocktail_id = req.params.id;
@@ -71,6 +77,7 @@ app.get('/api/cocktail/:id', async (req, res) => {
   }
 });
 
+// Get cocktail by name
 app.get('/api/cocktail-by-name/:name', async (req, res) => {
   try {
     const cocktail_name = req.params.name;

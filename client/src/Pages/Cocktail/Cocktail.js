@@ -7,7 +7,6 @@ import Card from '../../Components/Card/Card';
 import Button from '../../Components/Button/Button';
 
 function Cocktail() {
-  const [loading, setLoading] = useState(false);
   const [cocktail, setCocktail] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -16,6 +15,7 @@ function Cocktail() {
     navigate('/');
   };
 
+  // Getting the cocktail's details when the component gets mounted
   useEffect(() => {
     axios
       .get(`/api/cocktail/${id}`)
@@ -23,7 +23,6 @@ function Cocktail() {
         setCocktail(res.data);
       })
       .catch((err) => {
-        setLoading(false);
         throw new Error(`Error: ${err.message}`);
       });
   }, [id]);
@@ -39,6 +38,7 @@ function Cocktail() {
               <div className={styles['cocktail-ingredients']}>
                 <h2>Ingredients: </h2>
                 <p>
+                  {/* Mapping the modifed data just to print the "ingredients" with comma separation */}
                   {cocktail.ingredients.map((item, i) => {
                     let ingredient = item.ingredient;
                     let measure = item.measure ? ` (${item.measure})` : '';
