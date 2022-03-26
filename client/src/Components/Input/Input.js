@@ -2,7 +2,17 @@ import { useState, useEffect } from 'react';
 
 import styles from './Input.module.css';
 
-function Input({ type, label, name, id, placeholder, value = '', onChange }) {
+function Input({
+  type,
+  label,
+  name,
+  id,
+  placeholder,
+  value = '',
+  onChange,
+  onKeyUp,
+  onKeyDown,
+}) {
   const [isFocused, setIsFocused] = useState();
 
   const handleFocus = (e) => {
@@ -38,6 +48,8 @@ function Input({ type, label, name, id, placeholder, value = '', onChange }) {
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        onKeyUp={onKeyUp}
+        onKeyDown={onKeyDown}
         onFocus={handleFocus}
         onBlur={hanldeBlur}
       />

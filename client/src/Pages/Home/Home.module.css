@@ -9,6 +9,7 @@
 }
 
 .form-control-container button {
+  width: 360px;
   margin-left: auto;
 }
 
