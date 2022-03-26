@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Layout from './Layout/Layout';
 import Home from './Pages/Home/Home';
-import Cocktail from './Pages/Cocktail';
+import Cocktail from './Pages/Cocktail/Cocktail';
 
 function App() {
   return (
